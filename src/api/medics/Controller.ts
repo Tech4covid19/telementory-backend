@@ -1,4 +1,4 @@
-import { IMedic, Medic } from "./Medic"
+import { IMedic, Medic } from '../../model/Medic'
 
 export default class MedicController {
 
@@ -6,7 +6,7 @@ export default class MedicController {
 
     public async infoMedic() {
 
-        let medic: IMedic = new Medic("a", "a", "a", new Date())
+        let medic: IMedic = new Medic('a', 'a', 'a', new Date())
         return medic
     }
 }

@@ -1,12 +1,12 @@
-import * as Hapi from '@hapi/hapi'
+import { Server } from '@hapi/hapi'
 import * as fs from 'fs'
 
 import * as Swagger from './plugins/swagger'
 
-export async function init(): Promise<Hapi.Server> {
+export async function init(): Promise<Server> {
     try {
         const port = process.env.PORT
-        const server = new Hapi.Server({
+        const server = new Server({
             debug: { request: ['error'] },
             port: port,
             routes: {
