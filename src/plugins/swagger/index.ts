@@ -1,7 +1,7 @@
-import * as Hapi from "hapi"
+import { Server } from '@hapi/hapi'
 import HapiSwagger from "hapi-swagger"
 
-export const register = async (server: Hapi.Server): Promise<void> => {
+export const register = async (server: Server): Promise<void> => {
     try {
         return server.register([
             require("@hapi/inert"),   // Fuck JS

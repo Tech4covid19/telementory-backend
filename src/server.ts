@@ -1,7 +1,7 @@
-import * as Hapi from "hapi"
-import * as Medic from "./api/medics"
+import * as Hapi from '@hapi/hapi'
+import * as fs from 'fs'
 
-import * as Swagger from "./plugins/swagger"
+import * as Swagger from './plugins/swagger'
 
 export async function init(): Promise<Hapi.Server> {
     try {
@@ -11,25 +11,31 @@ export async function init(): Promise<Hapi.Server> {
             port: port,
             routes: {
                 cors: {
-                    origin: ["*"]
+                    origin: ['*']
                 }
             }
         })
 
-        console.log("Register plugins")
+        console.log('Register plugins')
 
         await Swagger.register(server)
 
-        console.log("Routes register start")
+        console.log('Routes register start')
 
-        // Add routes here
-        Medic.init(server)
+        const routesPath = `${__dirname}/routes`
+        fs.readdirSync(routesPath).forEach((path: string) => {
+            const routePath = `${routesPath}/${path}`
 
-        console.log("Routes registered sucessfully.")
+            if (fs.statSync(routePath).isDirectory()) {
+                require(routePath).default().register(server)
+            }
+        })
+
+        console.log('Routes registered sucessfully.')
 
         return server
     } catch (err) {
-        console.log("Error starting server: ", err)
+        console.log('Error starting server: ', err)
         throw err
     }
 }
