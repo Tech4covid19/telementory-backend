@@ -1,6 +1,6 @@
-import { Route } from "../interface"
-import { Server } from "@hapi/hapi"
-import MedicController from "../../api/medics/Controller"
+import { Route } from '../interface'
+import { Server } from '@hapi/hapi'
+import MedicController from '../../api/medics/Controller'
 
 export default (): Route => {
     return {
@@ -9,21 +9,21 @@ export default (): Route => {
             server.bind(controller)
 
             server.route({
-                method: "GET",
-                path: "/medic",
+                method: 'GET',
+                path: '/medic',
                 options: {
                     handler: controller.infoMedic,
-                    //   auth: "jwt",
-                    tags: ["api", "medic"],
-                    description: "Get medic info.",
+                    //   auth: 'jwt',
+                    tags: ['api', 'medic'],
+                    description: 'Get medic info.',
                     plugins: {
-                        "hapi-swagger": {
+                        'hapi-swagger': {
                             responses: {
-                                "200": {
-                                    description: "Medic founded."
+                                '200': {
+                                    description: 'Medic founded.'
                                 },
-                                "401": {
-                                    description: "Please login."
+                                '401': {
+                                    description: 'Please login.'
                                 }
                             }
                         }

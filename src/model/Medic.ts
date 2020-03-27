@@ -1,3 +1,5 @@
+import { Entity, Column } from 'typeorm'
+
 export interface IMedic {
     name: string
     email: string
@@ -5,10 +7,18 @@ export interface IMedic {
     createdAt: Date
 }
 
+@Entity()
 export class Medic implements IMedic {
+    @Column()
     name: string
+
+    @Column()
     email: string
+
+    @Column()
     username: string
+
+    @Column()
     createdAt: Date
 
     constructor(name: string, email: string, username: string, createdAt: Date) {
