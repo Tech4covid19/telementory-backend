@@ -22,8 +22,15 @@
         "lint": "eslint --ext=js,ts ."
     },
     "devDependencies": {
+        "@types/boom": "^7.3.0",
+        "@types/catbox": "^10.0.6",
         "@types/hapi": "^18.0.3",
+        "@types/iron": "^5.0.1",
+        "@types/joi": "^14.3.4",
+        "@types/mimos": "^3.0.1",
         "@types/node": "^12.12.31",
+        "@types/podium": "^1.0.0",
+        "@types/shot": "^4.0.0",
         "@typescript-eslint/eslint-plugin": "^2.25.0",
         "@typescript-eslint/parser": "^2.25.0",
         "eslint": "^6.8.0",
@@ -35,6 +42,6 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "hapi": "^18.1.0"
+        "@hapi/hapi": "^19.1.1"
     }
 }
