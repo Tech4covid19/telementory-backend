@@ -6,7 +6,9 @@ export default class MedicController {
 
     public async infoMedic() {
 
-        let medic: IMedic = new Medic('a', 'a', 'a', new Date())
+    	let medic: IMedic = new Medic()
+        //let medic: IMedic = new Medic('a', 'a', 'a', new Date())
         return medic
     }
 }
+

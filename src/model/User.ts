@@ -1,38 +1,66 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm'
+import { HealthOrg } from "./HealthOrg"
+
+/*export enum StaffType {
+    MEDIC="medic",
+    NURSE="nurse"
+}*/
+
+export enum LanguageEnum {
+    PT="pt-pt",
+    EN="en"
+}
+
 
 @Entity()
 export class User {
 
     @PrimaryGeneratedColumn()
-    id!: number
+    id: number
 
     @Column()
-    name!: string
+    name: string
 
     @Column()
-    email!: string
+    email: string
+
+    @Column({
+        nullable: true
+    })
+    username: string
+
+    @Column({type: "datetime"})
+    createdAt: Date
 
     @Column()
-    username!: string
+    phoneNumber: string
 
-    @Column()
-    createdAt!: Date
+    @Column({
+        nullable: true
+    })
+    country: number // Perhaps an id and a relation to an external table country would be better
 
-    @Column()
-    phoneNumber!: string
+    @Column({
+        type: "enum",
+        enum: LanguageEnum,
+        default: LanguageEnum.EN
+    })
+    language: LanguageEnum // Perhaps an id and a relation to an external table language would be better
 
-    @Column()
-    country!: number // Perhaps an id 🤔
+    @Column({
+        nullable: true
+    })
+    status: number // will we be needing this?
 
-    @Column()
-    language!: number // 👆
+    /*@Column(          // this was commented because when we create an entry in user we also create an entry in medic, please check medic model
+        {
+        type: "enum",
+        enum: StaffType,
+        default StaffType.MEDIC
+    })
+    userType: StaffType*/
 
-    @Column()
-    status!: number
-
-    @Column()
-    userType!: number
-
-    @Column()
-    idHealthOrg!: number
+    @OneToOne(() => HealthOrg) //foreign key realtionship with HealthOrg, for now a user belongs to one HealthOrg
+    @JoinColumn()
+    healthOrg: HealthOrg
 }
